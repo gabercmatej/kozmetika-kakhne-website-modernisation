@@ -66,20 +66,29 @@ export function AmbientVideo({
   } as const;
 
   /*
-   * The clip is lifted before the section's scrim goes over it, because it has
-   * to survive that scrim rather than merely sit under it. The band paints a
-   * flat violet at 82%, so only about a fifth of the clip reaches the eye; at
-   * source brightness the turning bottle was there in the DOM and playing —
-   * readyState HAVE_ENOUGH_DATA, never paused — and still read as a blank
-   * panel. Lifting the clip is the half of the trade that costs nothing: it
-   * cannot lighten the band where there is no clip, so the flat ground stays
-   * flat and the video's own footprint does not reappear as a patch. Thinning
-   * the scrim instead does the opposite on both counts.
+   * Graded so the clip reads *through* the section's scrim without becoming a
+   * bright spot in it. Those are two different problems and only contrast
+   * solves both.
+   *
+   * Brightness cannot: the clip's own mean is rgb(176,182,188), already
+   * brighter than the ground the band paints behind it, so raising brightness
+   * only pushes it further away. At the 1.55 this once carried, every channel
+   * clipped to 255 — a 102-point error against the ground — and the clip
+   * showed up as a white disc floating in the middle of a dark violet band,
+   * flat inside because everything above the clip point had been crushed
+   * together.
+   *
+   * So brightness is pulled *down* to sit the mean on the ground's tone, and
+   * contrast is doubled to carry the detail that brightness is no longer
+   * providing. Measured on the composited page: the clip's centre reads
+   * rgb(57,40,73) against a ground of rgb(53,35,69) — a delta of four, below
+   * the threshold where an edge is visible — while its luminance range stays
+   * at 241 of 255, so the bottle and its label are as legible as before.
    *
    * Applied to the poster as well as the video, or the section would step a
-   * shade brighter at the moment playback starts.
+   * shade at the moment playback starts.
    */
-  const lift = { filter: "brightness(1.55) saturate(1.15) contrast(1.05)" } as const;
+  const grade = { filter: "brightness(0.66) saturate(1.1) contrast(2.1)" } as const;
 
   return (
     <div aria-hidden="true" className={cn("pointer-events-none", className)} style={feather}>
@@ -88,7 +97,7 @@ export function AmbientVideo({
           "absolute inset-0 bg-center bg-no-repeat",
           fit === "contain" ? "bg-contain" : "bg-cover"
         )}
-        style={{ backgroundImage: `url(${poster})`, ...lift }}
+        style={{ backgroundImage: `url(${poster})`, ...grade }}
       />
       {play ? (
         <video
@@ -99,7 +108,7 @@ export function AmbientVideo({
           preload="none"
           poster={poster}
           tabIndex={-1}
-          style={lift}
+          style={grade}
           className={cn(
             "absolute inset-0 h-full w-full",
             fit === "contain" ? "object-contain" : "object-cover"
