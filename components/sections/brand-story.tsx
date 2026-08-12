@@ -28,16 +28,24 @@ export function BrandStory() {
       {/*
        * Three layers, painted in order under the copy.
        *
-       * 1. A white ground across the whole band. Without it the scrim sits on
+       * 1. A flat ground across the whole band. Without it the scrim sits on
        *    bare violet everywhere except behind the clip, so the section had
        *    one tone where the video was and a darker one where it was not.
        *    Filling the rest to match means the band reads as a single surface,
        *    the way the photographic band under "Vprašali ste" does.
+       *
+       *    Its value is solved, not picked. The scrim below composites as
+       *    `0.82 x violet-950 + 0.18 x ground`, and the band it has to match —
+       *    "Vprašali ste, odgovorili smo" — measures rgb(53,35,69) where its
+       *    photograph is flat. Rearranged, that needs a ground of rgb(162,153,165).
+       *    It read as white while the scrim was 88%, where the difference was
+       *    invisible; at 82% white put this band at rgb(70,53,85), visibly the
+       *    lighter of the two. Sampled after the change: rgb(53,35,69), exact.
        * 2. The clip, in a box carrying its own 16:9 ratio so nothing is
        *    cropped and the feather mask lines up with the frame it softens.
        * 3. One flat scrim over both.
        */}
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-white" />
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[#a299a5]" />
       <AmbientVideo
         className="absolute right-0 top-1/2 -z-10 aspect-video w-full -translate-y-1/2 lg:w-[70%]"
         srcMp4="/video/brand-story.mp4"
