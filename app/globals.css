@@ -1,0 +1,388 @@
+@import "tailwindcss";
+
+/*
+ * Kozmetika Kahne design tokens.
+ *
+ * Palette is extracted from the existing brand, not invented: the wordmark and
+ * packaging run on a deep aubergine violet with a muted gold secondary. The
+ * neutrals are deliberately given a violet undertone rather than the usual
+ * warm cream, so the paper reads as the brand's own rather than as generic
+ * artisan beige.
+ *
+ * The page is light-only by design. This is a storefront that sells on product
+ * photography against a consistent ground; inverting it would change how the
+ * products themselves read. `prefers-color-scheme: dark` intentionally gets
+ * the same page.
+ */
+
+@theme {
+  /* Brand violet */
+  --color-violet-950: #1d0930;
+  --color-violet-900: #2a0e40;
+  --color-violet-800: #38115a;
+  --color-violet-700: #46166b;
+  --color-violet-600: #57228a;
+  --color-violet-500: #6b3a96;
+  --color-violet-200: #d8c9e4;
+  --color-violet-100: #ebe2f0;
+  --color-violet-50: #f4f0f7;
+
+  /* Muted gold, rationed to heritage, loyalty and rating marks.
+     gold-700 is the only gold that passes AA for body text on paper (5.9:1);
+     gold-500/600 are for fills, strokes and large type only. */
+  --color-gold-700: #6f6230;
+  --color-gold-600: #8e7f3c;
+  --color-gold-500: #ab9b4e;
+  --color-gold-200: #e6dfc4;
+  --color-gold-50: #f7f4e9;
+
+  /* Neutrals with a violet undertone */
+  --color-ink: #1a1218;
+  --color-ink-soft: #3b3040;
+  --color-muted: #6b5f6b;
+  --color-faint: #786c7a;
+  /* Decorative hairlines. Not sufficient on their own to identify a control. */
+  --color-border: #e2dae2;
+  --color-border-strong: #cfc2d0;
+  /* Interactive boundaries (inputs, checkboxes, chips) need WCAG 1.4.11's
+     3:1 against paper. Verified at 3.01:1. */
+  --color-border-control: #9c8b9f;
+  --color-surface: #f2eef1;
+  --color-paper: #faf8f9;
+  --color-white: #ffffff;
+
+  /* Status */
+  --color-success: #2f6b47;
+  --color-danger: #a32235;
+  --color-danger-soft: #fdf2f3;
+
+  /* Type */
+  --font-display: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
+
+  --text-micro: 0.75rem;
+  --text-micro--line-height: 1.4;
+  --text-small: 0.8125rem;
+  --text-small--line-height: 1.5;
+  --text-base: 0.9375rem;
+  --text-base--line-height: 1.6;
+  --text-body: 1rem;
+  --text-body--line-height: 1.65;
+  --text-lead: 1.125rem;
+  --text-lead--line-height: 1.6;
+  --text-title: 1.375rem;
+  --text-title--line-height: 1.3;
+  --text-h3: clamp(1.375rem, 1.1rem + 0.9vw, 1.75rem);
+  --text-h3--line-height: 1.25;
+  --text-h2: clamp(1.75rem, 1.3rem + 1.9vw, 2.625rem);
+  --text-h2--line-height: 1.15;
+  --text-h1: clamp(2.125rem, 1.5rem + 2.6vw, 3.25rem);
+  --text-h1--line-height: 1.1;
+  --text-hero: clamp(2.25rem, 1.35rem + 3.2vw, 3.25rem);
+  --text-hero--line-height: 1.04;
+
+  /* One radius system: near-sharp, matching the existing brand's geometry */
+  --radius-xs: 2px;
+  --radius-sm: 3px;
+  --radius-DEFAULT: 4px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+
+  /* Violet-tinted elevation, never neutral black */
+  --shadow-subtle: 0 1px 2px rgb(42 14 64 / 0.05);
+  --shadow-card: 0 2px 8px rgb(42 14 64 / 0.06), 0 12px 28px -18px rgb(42 14 64 / 0.18);
+  --shadow-raised: 0 4px 14px rgb(42 14 64 / 0.09), 0 24px 48px -24px rgb(42 14 64 / 0.24);
+  --shadow-overlay: 0 24px 70px -20px rgb(29 9 48 / 0.35);
+
+  --container-page: 1400px;
+
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Layer scale, declared once so nothing invents its own z-index. */
+@theme {
+  --z-base: 0;
+  --z-sticky: 20;
+  --z-header: 40;
+  --z-dropdown: 50;
+  --z-overlay: 60;
+  --z-drawer: 70;
+  --z-toast: 80;
+}
+
+/*
+ * Tailwind has no theme namespace for z-index, so the tokens above generate no
+ * utilities on their own — `z-toast` silently compiled to nothing, which put
+ * the cart-flight layer at `z-index: auto` and let the sticky header paint over
+ * a ball mid-flight. Declaring them here makes the scale real; use these names
+ * rather than raw numbers so a layer can never be introduced out of order.
+ */
+@layer utilities {
+  .z-sticky { z-index: var(--z-sticky); }
+  .z-header { z-index: var(--z-header); }
+  .z-dropdown { z-index: var(--z-dropdown); }
+  .z-overlay { z-index: var(--z-overlay); }
+  .z-drawer { z-index: var(--z-drawer); }
+  .z-toast { z-index: var(--z-toast); }
+}
+
+@layer base {
+  /*
+   * No `scroll-behavior: smooth` here, deliberately.
+   *
+   * The router resets the scroll on navigation with `window.scrollTo(0, 0)`,
+   * and a smooth root turns that into an animation the incoming page then
+   * interrupts as its own content streams in and shifts the layout. Clicking
+   * the logo from a long page landed at 117px instead of the top — near enough
+   * to look like a bug, far enough to hide the announcement bar.
+   *
+   * The two places that genuinely want an eased scroll (the checkout and form
+   * error handlers) pass `behavior: "smooth"` to `scrollIntoView` themselves,
+   * so they are unaffected. In-page anchors jump, which is what reduced-motion
+   * visitors already got.
+   */
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.012em;
+    color: var(--color-ink);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--color-violet-700);
+    color: var(--color-white);
+  }
+
+  /* One focus treatment everywhere, always visible. */
+  :focus-visible {
+    outline: 2px solid var(--color-violet-500);
+    outline-offset: 2px;
+    border-radius: var(--radius-xs);
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
+    color: inherit;
+  }
+
+  /* iOS zooms any field under 16px on focus. */
+  @media (max-width: 767px) {
+    input,
+    textarea,
+    select {
+      font-size: 16px;
+    }
+  }
+}
+
+@layer components {
+  .page-container {
+    width: 100%;
+    max-width: var(--container-page);
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .page-container {
+      padding-inline: 2rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .page-container {
+      padding-inline: 3rem;
+    }
+  }
+
+  /* Long-form copy carried over from the source CMS. */
+  .prose-kahne {
+    color: var(--color-ink-soft);
+    font-size: var(--text-body);
+    line-height: 1.72;
+    /* The source CMS contains raw URLs pasted as plain text. Without this a
+       single 100-character URL sets the min-content width of its column and
+       pushes the whole page into horizontal scroll on narrow screens. */
+    overflow-wrap: anywhere;
+  }
+
+  .prose-kahne > * + * {
+    margin-top: 1em;
+  }
+
+  .prose-kahne p {
+    max-width: 68ch;
+  }
+
+  .prose-kahne strong {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+
+  .prose-kahne a {
+    color: var(--color-violet-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--color-violet-200);
+    transition: text-decoration-color 200ms var(--ease-out-soft);
+  }
+
+  .prose-kahne a:hover {
+    text-decoration-color: var(--color-violet-700);
+  }
+
+  .prose-kahne h2,
+  .prose-kahne h3,
+  .prose-kahne h4 {
+    margin-top: 1.75em;
+    margin-bottom: 0.5em;
+  }
+
+  .prose-kahne h2 {
+    font-size: var(--text-h3);
+  }
+
+  .prose-kahne h3 {
+    font-size: var(--text-title);
+  }
+
+  .prose-kahne ul,
+  .prose-kahne ol {
+    max-width: 68ch;
+    padding-left: 1.15rem;
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  .prose-kahne ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .prose-kahne ul > li {
+    position: relative;
+    padding-left: 1.4rem;
+  }
+
+  /* The brand's petal mark, reduced to a bullet. */
+  .prose-kahne ul > li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-gold-500);
+    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  }
+
+  .prose-kahne ol {
+    list-style: decimal;
+  }
+
+  .prose-kahne img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-DEFAULT);
+  }
+
+  .prose-kahne table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-base);
+  }
+
+  .prose-kahne td,
+  .prose-kahne th {
+    border-bottom: 1px solid var(--color-border);
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  /* Wide content must scroll inside itself, never the page. */
+  .prose-kahne .table-scroll,
+  .prose-kahne table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .hairline {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .field-label {
+    display: block;
+    font-size: var(--text-small);
+    font-weight: 500;
+    letter-spacing: 0.005em;
+    color: var(--color-ink-soft);
+    margin-bottom: 0.375rem;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Fades the bottom edge of a scrollable filter rail. */
+  .mask-fade-b {
+    mask-image: linear-gradient(to bottom, black calc(100% - 2rem), transparent);
+  }
+
+  .safe-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+/*
+ * Reduced motion: transitions collapse rather than disappear entirely, so
+ * state changes are still perceivable without any travel.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

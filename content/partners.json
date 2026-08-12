@@ -1,0 +1,58 @@
+[
+  {
+    "slug": "interspar",
+    "name": "Interspar",
+    "src": "/partnerji/interspar.webp",
+    "width": 400,
+    "height": 147
+  },
+  {
+    "slug": "mercator",
+    "name": "Mercator",
+    "src": "/partnerji/mercator.webp",
+    "width": 400,
+    "height": 400
+  },
+  {
+    "slug": "tus-drogerija",
+    "name": "Tuš drogerija",
+    "src": "/partnerji/tus-drogerija.webp",
+    "width": 400,
+    "height": 277
+  },
+  {
+    "slug": "e-leclerc",
+    "name": "E. Leclerc",
+    "src": "/partnerji/e-leclerc.webp",
+    "width": 400,
+    "height": 99
+  },
+  {
+    "slug": "medigo",
+    "name": "Medigo",
+    "src": "/partnerji/medigo.webp",
+    "width": 400,
+    "height": 81
+  },
+  {
+    "slug": "lekarna-novak",
+    "name": "Lekarna Novak",
+    "src": "/partnerji/lekarna-novak.webp",
+    "width": 400,
+    "height": 397
+  },
+  {
+    "slug": "nama",
+    "name": "Nama",
+    "src": "/partnerji/nama.webp",
+    "width": 400,
+    "height": 130
+  },
+  {
+    "slug": "flora",
+    "name": "Flora",
+    "src": "/partnerji/flora.webp",
+    "width": 400,
+    "height": 259
+  }
+]

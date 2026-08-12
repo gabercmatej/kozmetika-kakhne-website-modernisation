@@ -1,0 +1,72 @@
+{
+  "tipKoze": [
+    {
+      "value": "suha",
+      "label": "Suha"
+    },
+    {
+      "value": "obcutljiva",
+      "label": "Občutljiva"
+    },
+    {
+      "value": "normalna",
+      "label": "Normalna"
+    },
+    {
+      "value": "mesana",
+      "label": "Mešana"
+    },
+    {
+      "value": "problematicna",
+      "label": "Problematična"
+    },
+    {
+      "value": "mastna",
+      "label": "Mastna"
+    }
+  ],
+  "stanjeKoze": [
+    {
+      "value": "pigmentni-madezi",
+      "label": "Pigmentni madeži"
+    },
+    {
+      "value": "podocnjaki",
+      "label": "Podočnjaki"
+    },
+    {
+      "value": "povesene-veke",
+      "label": "Povešene veke"
+    },
+    {
+      "value": "gube",
+      "label": "Gube"
+    },
+    {
+      "value": "akne",
+      "label": "Akne"
+    },
+    {
+      "value": "rdecica",
+      "label": "Rdečica"
+    }
+  ],
+  "starost": [
+    {
+      "value": "20_35",
+      "label": "20-35 let"
+    },
+    {
+      "value": "36_55",
+      "label": "36-55 let"
+    },
+    {
+      "value": "56_70",
+      "label": "56-70 let"
+    },
+    {
+      "value": "70_more",
+      "label": "Več kot 70 let"
+    }
+  ]
+}

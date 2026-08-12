@@ -1,0 +1,48 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+.pnpm-debug.log*
+
+# env files
+.env*
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# local tooling
+/playwright-report
+/test-results
+/screenshots
+
+# source media (large, not needed at runtime)
+/assets-raw
+
+# Local Netlify folder
+.netlify
+
+# Playwright MCP scratch output
+/.playwright-mcp
+
+# local agent/tooling state, not part of the project
+/.impeccable
+/skill-observations

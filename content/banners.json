@@ -1,0 +1,122 @@
+[
+  {
+    "slug": "priprava-na-sonce",
+    "src": "/kampanje/priprava-na-sonce.webp",
+    "width": 1400,
+    "height": 1050,
+    "title": "PRIPRAVA NA SONCE",
+    "subtitle": null,
+    "cta": {
+      "label": "RUTINA, ki deluje",
+      "href": "/produkt/poletna-rutina"
+    }
+  },
+  {
+    "slug": "zakladi-morja",
+    "src": "/kampanje/zakladi-morja.webp",
+    "width": 1400,
+    "height": 788,
+    "title": "ZAKLADI MORJA",
+    "subtitle": "Sonce, morje, sreča in...morske alge v poletni negi.",
+    "cta": {
+      "label": "MORSKI GEL IZ ALG",
+      "href": "/produkt/naravno-mazilo-iz-morskih-alg"
+    }
+  },
+  {
+    "slug": "potovalna-pakiranja",
+    "src": "/kampanje/potovalna-pakiranja.webp",
+    "width": 1400,
+    "height": 788,
+    "title": "POTOVALNA PAKIRANJA",
+    "subtitle": "DOPUST ali TESTIRANJE?Na voljo so MINI PAKIRANJA.",
+    "cta": {
+      "label": "IZBERITE SVOJO MINI IZVEDBO",
+      "href": "/produkti"
+    }
+  },
+  {
+    "slug": "poletna-prijatelja",
+    "src": "/kampanje/poletna-prijatelja.webp",
+    "width": 1400,
+    "height": 788,
+    "title": "POLETNA PRIJATELJA",
+    "subtitle": "Preden nanesete SPF kremo, svoji koži podarite naravno hidracijo in antioksidativno zaščito.",
+    "cta": {
+      "label": "POLETNI DUO",
+      "href": "/produkt/poletni-duo"
+    }
+  },
+  {
+    "slug": "zascitnik-koze-pred-pigmentnimi-madezi",
+    "src": "/kampanje/zascitnik-koze-pred-pigmentnimi-madezi.webp",
+    "width": 1400,
+    "height": 800,
+    "title": "ZAŠČITNIK KOŽE PRED PIGMENTNIMI MADEŽI",
+    "subtitle": "Rutina v treh enostavnih korakihki zmanjšuje pigmentne madeže.",
+    "cta": {
+      "label": "PRAVOČASNA ZAŠČITA =ZDAJ!",
+      "href": "/produkt/zascitnik-koze--skin-defender"
+    }
+  },
+  {
+    "slug": "dotox-zmanjsuje-gube",
+    "src": "/kampanje/dotox-zmanjsuje-gube.webp",
+    "width": 1400,
+    "height": 800,
+    "title": "DOTOX ZMANJŠUJE GUBE",
+    "subtitle": "Patentiran.Preizkušen v 20-letni praksi.Ciljno delovanje.Brez dišav.",
+    "cta": {
+      "label": "DOTOX",
+      "href": "/produkt/dotox"
+    }
+  },
+  {
+    "slug": "kako-se-resit-suhe-koze",
+    "src": "/kampanje/kako-se-resit-suhe-koze.webp",
+    "width": 1400,
+    "height": 800,
+    "title": "KAKO SE REŠIT SUHE KOŽE?",
+    "subtitle": "Personaliziran pristop. Sveže pripravljeno, samo zame.Učinek opazim takoj.",
+    "cta": {
+      "label": "S PRAVIMI IZDELKI - ENOSTAVNO.",
+      "href": "/produkt/hranljiv-koktejl"
+    }
+  },
+  {
+    "slug": "moska-nega-special-edition",
+    "src": "/kampanje/moska-nega-special-edition.webp",
+    "width": 1400,
+    "height": 800,
+    "title": "MOŠKA NEGA. SPECIAL EDITION.",
+    "subtitle": "Poskrbi zase. Podpri svojo kožo in lepoto obraza.",
+    "cta": {
+      "label": "Enostavno. Učinkovito.",
+      "href": "/produkt/moski-special-edition-serum-in-krema"
+    }
+  },
+  {
+    "slug": "zakaj-nam-stranke-zaupajo",
+    "src": "/kampanje/zakaj-nam-stranke-zaupajo.webp",
+    "width": 1400,
+    "height": 988,
+    "title": "ZAKAJ NAM STRANKE ZAUPAJO?",
+    "subtitle": "Ker je naša tradicija dobrih krem tako dolga, da so v kopalnicah 3 generacijKer je majhna proizvodnja naša prednost in garancija kakovostiKer cenimo naše stranke in vam ponujamo visoko kakovost po zmerni ceni",
+    "cta": {
+      "label": "ZA IZDELKI STOJIMO LJUDJE",
+      "href": "/vodstvo"
+    }
+  },
+  {
+    "slug": "nagradna-igra",
+    "src": "/kampanje/nagradna-igra.webp",
+    "width": 1400,
+    "height": 800,
+    "title": "NAGRADNA IGRA",
+    "subtitle": "Tudi tilahko sodeluješv nagradni igri.Ponovno žrebamo po poletnih dopustih.",
+    "cta": {
+      "label": "Prijavi se zdaj!",
+      "href": "/nagradne-igre"
+    }
+  }
+]
