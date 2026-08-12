@@ -65,6 +65,22 @@ export function AmbientVideo({
     WebkitMaskImage: `radial-gradient(60% 60% at 50% 50%, ${stops})`,
   } as const;
 
+  /*
+   * The clip is lifted before the section's scrim goes over it, because it has
+   * to survive that scrim rather than merely sit under it. The band paints a
+   * flat violet at 82%, so only about a fifth of the clip reaches the eye; at
+   * source brightness the turning bottle was there in the DOM and playing —
+   * readyState HAVE_ENOUGH_DATA, never paused — and still read as a blank
+   * panel. Lifting the clip is the half of the trade that costs nothing: it
+   * cannot lighten the band where there is no clip, so the flat ground stays
+   * flat and the video's own footprint does not reappear as a patch. Thinning
+   * the scrim instead does the opposite on both counts.
+   *
+   * Applied to the poster as well as the video, or the section would step a
+   * shade brighter at the moment playback starts.
+   */
+  const lift = { filter: "brightness(1.55) saturate(1.15) contrast(1.05)" } as const;
+
   return (
     <div aria-hidden="true" className={cn("pointer-events-none", className)} style={feather}>
       <div
@@ -72,7 +88,7 @@ export function AmbientVideo({
           "absolute inset-0 bg-center bg-no-repeat",
           fit === "contain" ? "bg-contain" : "bg-cover"
         )}
-        style={{ backgroundImage: `url(${poster})` }}
+        style={{ backgroundImage: `url(${poster})`, ...lift }}
       />
       {play ? (
         <video
@@ -83,6 +99,7 @@ export function AmbientVideo({
           preload="none"
           poster={poster}
           tabIndex={-1}
+          style={lift}
           className={cn(
             "absolute inset-0 h-full w-full",
             fit === "contain" ? "object-contain" : "object-cover"

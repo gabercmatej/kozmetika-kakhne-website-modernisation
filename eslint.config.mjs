@@ -9,6 +9,10 @@ const eslintConfig = defineConfig([
     ".next/**",
     "out/**",
     "build/**",
+    /* Netlify's build output. Git ignores it, but eslint has its own list —
+       so running `netlify build` or `netlify dev` once left 198 bundled files
+       on the lint path and turned a clean run into 220 errors. */
+    ".netlify/**",
     "next-env.d.ts",
     "scripts/**",
   ]),

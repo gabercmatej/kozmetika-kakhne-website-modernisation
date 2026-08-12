@@ -44,7 +44,12 @@ export function BrandStory() {
         srcWebm="/video/brand-story.webm"
         poster="/video/brand-story-poster.jpg"
       />
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-violet-950/88" />
+      {/* 82%, not 88%. The extra six points are what let the turning bottle
+          read at all; below about 70% the band goes grey, the clip's footprint
+          returns as a lighter patch, and the body copy falls under 4.5:1
+          against the white ground. The clip meets it halfway by carrying its
+          own brightness lift — see `lift` in ambient-video.tsx. */}
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-violet-950/82" />
 
       <div className="page-container relative py-20 md:py-28">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)]">
