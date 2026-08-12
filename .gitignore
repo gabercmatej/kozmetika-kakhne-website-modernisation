@@ -46,3 +46,6 @@ next-env.d.ts
 # local agent/tooling state, not part of the project
 /.impeccable
 /skill-observations
+
+# stray tooling logs
+tailwindcss-*.log
