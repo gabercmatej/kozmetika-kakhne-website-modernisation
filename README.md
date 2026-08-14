@@ -1,6 +1,7 @@
 # Kozmetika Kahne — prenova spletne trgovine
 
-Live site → kozmetika-kahne-prenova.netlify.app
+Live site → ![kozmetika_kahne_website](kozmetika-kahne-prenova.netlify.app)
+
 A rebuilt storefront for **Kozmetika Kahne**, a Slovenian skincare company founded in 1987.
 
 This is an independent modernisation built as a concept and portfolio piece. The company's live shop at [kozmetikakahne.com](https://kozmetikakahne.com) runs on a separate, closed platform; this repository is a new Next.js front end built against that site as the reference. All content is in Slovenian, and every product, price, ingredient list and review shown here is scraped from the real shop rather than invented.
