@@ -1,6 +1,6 @@
 # Kozmetika Kahne — prenova spletne trgovine
 
-Live site → ![kozmetika-kahne-prenova.netlify.app](kozmetika-kahne-prenova.netlify.app)
+Live site → [kozmetika-kahne-prenova.netlify.app](https://kozmetika-kahne-prenova.netlify.app)
 
 A rebuilt storefront for **Kozmetika Kahne**, a Slovenian skincare company founded in 1987.
 
